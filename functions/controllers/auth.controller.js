@@ -6,16 +6,11 @@ const getIdTokenFromHeaders = (headers) => {
   return idToken;
 }
 
-const getUserDetails = (uid) => {
-  // TBD
-}
-
 const validateToken = async (req, res, next) => {
   const idToken = getIdTokenFromHeaders(req.headers);
   try {
     const decodedIdToken = await admin.auth().verifyIdToken(idToken);
     console.log(decodedIdToken);
-    // TODO: get users details from User collection.
     req.user = decodedIdToken;
     return next();
   } catch (error) {

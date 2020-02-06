@@ -2,29 +2,17 @@ const admin =  require('firebase-admin');
 
 // Create user for auth
 const createAuthUser = async (user) => {
-  const { email, password = 'temporalZapopUser123' } = user;
+  const { firstName, email, password = 'temporalZapopUser123', role = 'phoneHost', cellPhone } = user;
   const authUserRecord = await admin.auth().createUser({
+    firstName,
     email,
     password,
-  });
-
-  return authUserRecord;
-}
-
-// Maybe not necessary...
-const saveUser = async ({ uid, user }) => {
-  const { email, role = 'phoneHost', cellPhone } = user;
-  const newUser = admin.firestore().doc(`/user`);
-  await newUser.set({
-    uid,
-    email,
-    password,
-    verified: false,
     role,
     cellPhone,
+    verified: false,
     disabled: false
-  })
-  return newUser;
+  });
+  return authUserRecord;
 }
 
 const createUser = async (req, res) => {
@@ -38,10 +26,7 @@ const createUser = async (req, res) => {
   }
   // Create a new user for Auth
   const authUser = await createAuthUser(user);
-  // Create a new user with full information in Firestore
-  const newUser = await saveUser({ uid: authUser.uid, user });
-  console.log('new user created ', newUser);
-  return res.status(newUser);
+  return res.json(authUser);
 }
   
 
