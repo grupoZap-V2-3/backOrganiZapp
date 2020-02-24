@@ -7,8 +7,9 @@ const getIdTokenFromHeaders = (headers) => {
 const validateToken = async (req, res, next) => {
   const idToken = getIdTokenFromHeaders(req.headers);
   try {
-    // const decodedIdToken = await admin.auth().verifyIdToken(idToken);
+    // Decode Token (Passport)
     // console.log(decodedIdToken);
+    // Add user info to request.
     // req.user = decodedIdToken;
     return next();
   } catch (error) {
