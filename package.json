@@ -1,0 +1,22 @@
+{
+  "name": "organizapp-backend",
+  "description": "",
+  "scripts": {
+    "lint": "eslint .",
+    "dev": "nodemon src/index.js"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "nodemon": "^2.0.2"
+  },
+  "private": true
+}

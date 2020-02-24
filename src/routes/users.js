@@ -4,6 +4,7 @@ const catchErrors = require('../helpers/catchErrors');
 
 //  {BASE_URL}/user
 router.route('/')
-  .post(catchErrors(usersController.createUser));
+  .post(catchErrors(usersController.createUser)  );
+
 
 module.exports = router;

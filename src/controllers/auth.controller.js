@@ -1,5 +1,3 @@
-const admin =  require('firebase-admin');
-
 const getIdTokenFromHeaders = (headers) => {
   const { authorization = '' } = headers;
   const [ , idToken = '' ] = authorization.split('Bearer ');
@@ -9,9 +7,9 @@ const getIdTokenFromHeaders = (headers) => {
 const validateToken = async (req, res, next) => {
   const idToken = getIdTokenFromHeaders(req.headers);
   try {
-    const decodedIdToken = await admin.auth().verifyIdToken(idToken);
-    console.log(decodedIdToken);
-    req.user = decodedIdToken;
+    // const decodedIdToken = await admin.auth().verifyIdToken(idToken);
+    // console.log(decodedIdToken);
+    // req.user = decodedIdToken;
     return next();
   } catch (error) {
     console.error('Error while verifying Firebase ID token:', error);
