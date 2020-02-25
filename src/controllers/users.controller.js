@@ -1,17 +1,16 @@
-// Create user for auth
+const User = require('../models/userModel');
+
 const createAuthUser = async (user) => {
-  const { firstName, email, password = 'temporalZapopUser123', role = 'phoneHost', cellPhone } = user;
-  // const authUserRecord = await admin.auth().createUser({
-  //   firstName,
-  //   email,
-  //   password,
-  //   role,
-  //   cellPhone,
-  //   verified: false,
-  //   disabled: false
-  // });
-  // return authUserRecord;\
-  return { test: 'test' };
+  const { firstName, email, password = 'temporalZapopUser123', role = 'phoneHost', cellPhone, gender = 'male' } = user;
+  const newUser = new User({
+    firstName,
+    email,
+    gender,
+    role,
+    cellPhone,
+  });
+  await newUser.save();
+  return newUser;
 }
 
 const createUser = async (req, res) => {
